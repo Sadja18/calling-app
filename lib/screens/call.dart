@@ -6,6 +6,8 @@ import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 const String appId = 'ad0d26a345964b03af77bdfde45b3ad9';
 
 class VoiceCallScreen extends StatefulWidget {
+  static const routeName = "/voice-call";
+
   const VoiceCallScreen({super.key});
 
   @override
@@ -96,47 +98,44 @@ class _VoiceCallScreenState extends State<VoiceCallScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      scaffoldMessengerKey: scaffoldMessengerKey,
-      home: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text('voice call demo'),
-        ),
-        body: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 19, vertical: 4),
-          children: [
-            Container(
-              height: 40,
-              child: Center(
-                child: _status(),
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text('voice call demo'),
+      ),
+      body: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 19, vertical: 4),
+        children: [
+          SizedBox(
+            height: 40,
+            child: Center(
+              child: _status(),
+            ),
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () {
+                    join();
+                  },
+                  child: const Text("Join"),
+                ),
               ),
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      join();
-                    },
-                    child: const Text("Join"),
-                  ),
+              const SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () {
+                    leave();
+                  },
+                  child: const Text('Leave'),
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      leave();
-                    },
-                    child: const Text('Leave'),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

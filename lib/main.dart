@@ -1,4 +1,5 @@
 import 'package:call/screens/call.dart';
+import 'package:call/screens/dashboard.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,7 +13,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // ignore: prefer_const_constructors
-    return VoiceCallScreen();
+    // return VoiceCallScreen();
+
+    return MaterialApp(
+      // scaffoldMessengerKey: scaffoldMessengerKey,
+      title: 'Calling App',
+      theme: ThemeData(
+        primaryColor: Colors.amberAccent,
+        backgroundColor: Colors.lightBlueAccent,
+        textTheme: Theme.of(context)
+            .textTheme
+            .apply(fontSizeDelta: 0.3, fontSizeFactor: 1.15),
+      ),
+      initialRoute: '/',
+      routes: {
+        '/': (ctx) => const DashboardScreen(),
+        // ignore: prefer_const_constructors
+        VoiceCallScreen.routeName: (ctx) => VoiceCallScreen()
+      },
+    );
   }
 }
 
